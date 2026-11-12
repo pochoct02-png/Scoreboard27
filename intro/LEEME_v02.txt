@@ -1,0 +1,83 @@
+FC27 para FIFA16 — intro nativa experimental v0.2
+
+ESTADO: pruebas fuera del juego superadas. NO comprobada en FIFA16.
+La reproducción, la transparencia, la escala y los FPS requieren una prueba real.
+No se afirma equivalencia visual confirmada con el video dentro de FIFA16.
+
+QUÉ SE ADAPTÓ
+
+La intro usa el FullPanel del lib.zip proporcionado por el usuario. Se conservan
+sus texturas, geometría, secuencia del fondo y el bytecode original de
+InitAnimation, AnimateIn y AnimateOut. Los nombres, el estadio y los escudos
+proceden del Update de FIFA16; no están fijados a Barcelona y Como ni se reproduce
+el video de referencia como sustituto de los datos del partido.
+
+Se reemplazó la inicialización de FullPanel por una específica para el cartel
+previo del partido. No se invocan sus proveedores modernos de jugador a seguir.
+Se adaptó el ciclo Update/Remove al BaseOverlay de FIFA16. El paquete evita
+reiniciar la entrada con mensajes idénticos y protege la reapertura frente a un
+callback de salida anterior.
+
+Los componentes adicionales se instalan en dos carpetas propias:
+game/globalComponents/fc27Components____9/
+game/globalComponents/fc27Components____10/
+No se reemplaza el globalComponents.big del juego ni overlaycomponents_9.
+El import de ImageLoader sigue apuntando al componente nativo de FIFA16.
+
+La construcción incluye también 9002 y 9018 EXACTAMENTE como estaban en la
+prueba v0.1, para usar el conjunto sin fc27overlay.asi. No hay una adaptación
+nueva de las formaciones en esta versión.
+
+INSTALACIÓN DEL RESULTADO GENERADO
+
+1. Cerrá FIFA16 y hacé una copia completa de tu pack UEFA - Champions League.
+   Usá esa copia como pack de prueba.
+2. Copiá game/ y fonts/ del directorio generado por build_intro.py dentro del
+   pack de prueba, combinando carpetas. Se reemplazan overlay_9002.big,
+   overlay_9018.big y overlay_9042.big. Se agregan únicamente las dos carpetas
+   de componentes mencionadas arriba.
+3. Si usás fonts/fonts.txt, conservá su contenido y comprobá que incluya:
+   Champions Regular.ttf
+   Champions.ttf
+4. Mové solamente Mods/fc27overlay.asi a una carpeta fuera de Mods con el juego
+   cerrado. Conservá el resto del cargador y ReShade.
+5. Elegí el pack de prueba con tu server habitual y entrá a un partido completo,
+   sin saltar la presentación.
+
+QUÉ COMPROBAR
+
+- Que el juego llegue al partido sin cerrarse.
+- Que la intro muestre el fondo animado y luego los escudos y nombres correctos.
+- Que el estadio sea el del partido y local/visitante estén en el orden correcto.
+- Que los textos no queden congelados o invisibles.
+- Que el fondo avance: en particular, la compatibilidad del tween _frame con el
+  AnimationManager de FIFA16 necesita comprobarse dentro del juego.
+- Que la intro salga cuando corresponde y deje visible la cancha.
+- Que aparezcan después las formaciones y el marcador de la base v0.1.
+- Comparar los FPS con el pack anterior a la misma resolución.
+
+Si algo falla, mandá una captura o un video corto del resultado e indicá si
+ocurrió al cargar, durante la entrada o al salir.
+
+RESTAURAR
+
+Con el juego cerrado, la copia completa del paso 1 permite volver al estado
+anterior. Como ayuda, RESTAURAR/game/overlays/ contiene los tres overlays
+originales del ZIP UEFA - Champions League que compartiste.
+Copialos sobre los del pack de prueba, eliminá solamente las dos carpetas
+fc27Components____9 y fc27Components____10 agregadas y devolvé fc27overlay.asi
+si estaba activo antes. Las fuentes pueden conservarse si el pack ya las usaba.
+
+VERIFICACIÓN
+
+VERIFICACION_v02.json registra controles de estructura y ejecución del adaptador
+en un intérprete de prueba. Los hashes confirman la conservación del código de
+animación y de las texturas/geometría de FullPanel. El intérprete no implementa
+el renderizador ni sustituye al motor de FIFA16. No hay mediciones de FPS.
+MANIFEST.json contiene los hashes de los archivos generados.
+
+ENTREGA
+
+El entorno de ejecución falló durante la entrega del ZIP generado. Esta rama
+conserva las fuentes y el verificador para reconstruirlo a partir de los archivos
+originales del usuario; el binario v0.2 todavía no está publicado en GitHub.
