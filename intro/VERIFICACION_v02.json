@@ -1,0 +1,39 @@
+{
+  "runtime_tested": false,
+  "execution_context": "Recorded before the execution environment failure; not rerun after source recovery to GitHub",
+  "graphs": {
+    "texts": {
+      "characters": 276,
+      "root_items": 4,
+      "functions": 626
+    },
+    "panel": {
+      "characters": 186,
+      "root_items": 4,
+      "functions": 29
+    },
+    "wrapper": {
+      "characters": 4,
+      "root_items": 5,
+      "functions": 9
+    }
+  },
+  "original_fc27_functions": {
+    "InitAnimation": "dcc33eb5b79c355aecd5357983303f228c789ebccb670214e6c99a0e8c8aab6c",
+    "AnimateIn": "1b0534d1f123fdb81f55676aed71124c4c5e0ddbf46275bb810f3824c9273665",
+    "AnimateOut": "640416e81cd0dfbfbd750dde05d6ede50ccde161f0169bab22ec37a26c809b1a"
+  },
+  "all_panel_textures_and_geometry_preserved": true,
+  "bridge_execution": [
+    "dynamic names/stadium",
+    "native crest resolver",
+    "duplicate-update suppression",
+    "incomplete-update rejection",
+    "exit callback",
+    "reentry",
+    "stale exit callback guard"
+  ],
+  "panel_initialization": "passed; no modern player data providers invoked",
+  "archive_delivery": "not published; execution environment failed",
+  "archive_sha256_before_failure": "c7a33018887094217bbc8e469f1f50fafd7709e170052a9b2a986b755c631721"
+}
